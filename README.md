@@ -10,7 +10,6 @@
 
 In this tutorial we will open some geospatial data that is stored in a netCDF file. We will select the variable and time range of interest, and we will export the data to a GeoTIFF so that we can continue the analysis in R or other geospatial software.
 
-
 ![Arctic Growing Season NDVI, 1982](GIMMS3g_1982_NDVI.png)
 
 ## Source Data
@@ -22,10 +21,10 @@ Specifically, we will use the file “gimms3g_ndvi_1982-2012.nc4”" from this d
 ## Prerequisites
 
 R v3.4 or later. Required packages: 
-<ul><li>ncdf4 # package for netcdf manipulation</li>
-<li>raster # package for raster manipulation</li>
-<li>rgdal # package for geospatial analysis</li>
-<li>ggplot2 # package for plotting</li></ul>
+<ul><li>ncdf4 -- for netcdf manipulation</li>
+<li>raster -- for raster manipulation</li>
+<li>rgdal -- for geospatial analysis</li>
+<li>ggplot2 -- for plotting</li></ul>
 
 ## Procedure
 
