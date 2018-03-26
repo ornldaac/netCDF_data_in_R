@@ -145,6 +145,7 @@ ggplot(data=toolik_df, aes(x=year, y=NDVI, group=1)) +
   geom_line() + # make this a line plot
   ggtitle("Growing season NDVI at Toolik Lake Station") +     # Set title
   theme_bw() # use the black and white theme
+ggsave('GIMMS3g_Toolik.png')
 ```
 
 Wow! The Toolik Lake site really is getting greener. 
