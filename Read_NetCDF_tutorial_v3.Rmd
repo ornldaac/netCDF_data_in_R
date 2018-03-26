@@ -110,6 +110,8 @@ r <- flip(r, direction='y')
 Finally, we can plot the raster to take a look at the NDVI in 1982. Remember this data is cut off below 20 degrees North.
 ```{r plot_raster}
 plot(r)
+dev.copy(png,'GIMMS3g_1982_NDVI.png')
+dev.off()
 ```
 
 ## Saving to a GeoTIFF
@@ -176,9 +178,11 @@ r_diff <- flip(r_diff, direction='y')
 And plot. 
 ```{r plot_raster_diffs}
 plot(r_diff)
+dev.copy(png,'GIMMS3g_NDVI_diff.png')
+dev.off()
 ```
 
 The areas that were greener in 2012 compared to 1982 are represented by positive numbers (green in this color scheme). Note that this is not a proper timeseries analysis (like the authors did in their paper), it is only showing the difference between two particular years.
 
 
-## Congratulations, now you know how to open and read data from a netCDF file.
+# Congratulations, now you know how to open and read data from a netCDF file.
