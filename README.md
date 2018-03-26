@@ -21,11 +21,11 @@ Specifically, we will use the file “gimms3g_ndvi_1982-2012.nc4”" from this d
 
 ## Prerequisites
 
-R xxx or later. Required packages: 
-ncdf4 # package for netcdf manipulation
-raster # package for raster manipulation
-rgdal # package for geospatial analysis
-ggplot2 # package for plotting
+R v3.4 or later. Required packages: 
+<ul><li>ncdf4 # package for netcdf manipulation</li>
+<li>raster # package for raster manipulation</li>
+<li>rgdal # package for geospatial analysis</li>
+<li>ggplot2 # package for plotting</li></ul>
 
 ## Procedure
 
