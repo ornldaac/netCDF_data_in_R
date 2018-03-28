@@ -1,6 +1,7 @@
-## How to open and work with NetCDF data in R
-author: "Alison Boyer, ORNL DAAC"
-date: "7/21/2017"
+# How to open and work with NetCDF data in R
+author: Alison Boyer, ORNL DAAC
+
+date: 7/21/2017
 
 In this tutorial we will open some geospatial data that is stored in a netCDF file. We will select the variable and time range of interest, and export the data to a GeoTIFF so that we can continue the analysis in R or other geospatial software.
 
@@ -106,6 +107,7 @@ plot(r)
 dev.copy(png,'GIMMS3g_1982_NDVI.png')
 dev.off()
 ```
+
 
 ## Saving to a GeoTIFF
 
