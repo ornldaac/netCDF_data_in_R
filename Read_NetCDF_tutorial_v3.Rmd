@@ -107,7 +107,7 @@ plot(r)
 dev.copy(png,'GIMMS3g_1982_NDVI.png')
 dev.off()
 ```
-
+![Arctic Growing Season NDVI, 1982](GIMMS3g_1982_NDVI.png)
 
 ## Saving to a GeoTIFF
 
@@ -144,6 +144,7 @@ ggplot(data=toolik_df, aes(x=year, y=NDVI, group=1)) +
   theme_bw() # use the black and white theme
 ggsave('GIMMS3g_Toolik.png')
 ```
+![Growing season NDVI at Toolik Lake Station](GIMMS3g_Toolik.png)
 
 Wow! The Toolik Lake site really is getting greener. 
 
@@ -176,8 +177,8 @@ plot(r_diff)
 dev.copy(png,'GIMMS3g_NDVI_diff.png')
 dev.off()
 ```
+![Difference between growing season NDVI in 2010 vs 1982](GIMMS3g_NDVI_diff.png)
 
 The areas that were greener in 2012 compared to 1982 are represented by positive numbers (green in this color scheme). Note that this is not a proper timeseries analysis (like the authors did in their paper), it is only showing the difference between two particular years.
 
-
-# Congratulations, now you know how to open and read data from a netCDF file.
+Congratulations, now you know how to open and read data from a netCDF file.
