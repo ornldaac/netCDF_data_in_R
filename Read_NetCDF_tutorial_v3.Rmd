@@ -107,7 +107,7 @@ plot(r)
 dev.copy(png,'GIMMS3g_1982_NDVI.png')
 dev.off()
 ```
-![Arctic Growing Season NDVI, 1982](GIMMS3g_Toolik.png)
+![Arctic Growing Season NDVI, 1982](GIMMS3g_1982_NDVI.png)
 
 ## Saving to a GeoTIFF
 
