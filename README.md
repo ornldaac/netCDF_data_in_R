@@ -10,7 +10,7 @@
 
 In this tutorial we will open some geospatial data that is stored in a netCDF file. We will select the variable and time range of interest, and we will export the data to a GeoTIFF so that we can continue the analysis in R or other geospatial software.
 
-[Arctic Growing Season NDVI, 1982](GIMMS3g_1982_NDVI.png)
+![Arctic Growing Season NDVI, 1982](GIMMS3g_1982_NDVI.png)
 
 ## Source Data
 
