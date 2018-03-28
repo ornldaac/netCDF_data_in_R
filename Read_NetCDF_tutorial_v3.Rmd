@@ -1,27 +1,20 @@
----
-title: "## How to open and work with NetCDF data in R"
+## How to open and work with NetCDF data in R
 author: "Alison Boyer, ORNL DAAC"
 date: "7/21/2017"
-output: html_document
----
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, warning=FALSE)
-```
-
-In this tutorial we will open some geospatial data that is stored in a netCDF file. We will select the variable and time range of interest, and we will export the data to a GeoTIFF so that we can continue the analysis in R or other geospatial software.
+In this tutorial we will open some geospatial data that is stored in a netCDF file. We will select the variable and time range of interest, and export the data to a GeoTIFF so that we can continue the analysis in R or other geospatial software.
 
 ## An example NetCDF dataset
-First, we need some data to play with. As an example, we will use some data on trends in vegetation greenness in the Arctic. This data is available from the ORNL DAAC at the following link: https://doi.org/10.3334/ORNLDAAC/1275 
-
-This dataset provides normalized difference vegetation index (NDVI) data for the Arctic growing season derived primarily with data from Advanced Very High Resolution Radiometer (AVHRR) sensors onboard several NOAA satellites over the years 1982 through 2012. The NDVI data, which show vegetation activity, were averaged annually for the arctic growing season (June, July and August) in each year. The data are circumpolar in coverage at 8-km resolution and limited to greater than 20 degrees N.
+First, we need some data to play with. As an example, we will use some data on trends in vegetation greenness in the Arctic created by Guay et al. 
 
 The data citation is:
 Guay, K.C., P.S.A. Beck, and S.J. Goetz. 2015. Long-Term Arctic Growing Season NDVI Trends from GIMMS 3g, 1982-2012. ORNL DAAC, Oak Ridge, Tennessee, USA. https://doi.org/10.3334/ORNLDAAC/1275
 
-Specifically, we will use the file "gimms3g_ndvi_1982-2012.nc4"" from this dataset. Go download it. You will need to log in using your NASA Earthdata login.
+This dataset provides normalized difference vegetation index (NDVI) data for the Arctic growing season derived primarily with data from Advanced Very High Resolution Radiometer (AVHRR) sensors onboard several NOAA satellites over the years 1982 through 2012. The NDVI data, which show vegetation activity, were averaged annually for the arctic growing season (June, July and August) in each year. The data are circumpolar in coverage at 8-km resolution and limited to greater than 20 degrees N.
 
-Remember to place the file into the same working directory where your R script is located.
+Specifically, we will use the file "gimms3g_ndvi_1982-2012.nc4" from this dataset. The netcdf file is available from the ORNL DAAC at the following link: https://daac.ornl.gov/daacdata/global_vegetation/GIMMS3g_NDVI_Trends/data/gimms3g_ndvi_1982-2012.nc4
+
+You will need to log in using your NASA Earthdata login. Remember to place the file into the same working directory where your R script is located.
 
 ## Load the required R packages
 Reading data stored in netCDF files is quite straightforward in R, provided that you load the appropriate packages. You may need to install these packages if you have not used them before.
