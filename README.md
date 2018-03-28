@@ -16,7 +16,7 @@ In this tutorial we will open some geospatial data that is stored in a netCDF fi
 
 Guay, K.C., P.S.A. Beck, and S.J. Goetz. 2015. Long-Term Arctic Growing Season NDVI Trends from GIMMS 3g, 1982-2012. ORNL DAAC, Oak Ridge, Tennessee, USA. <a href="https://doi.org/10.3334/ORNLDAAC/1275">https://doi.org/10.3334/ORNLDAAC/1275</a>
 
-Specifically, we will use the file “gimms3g_ndvi_1982-2012.nc4”" from this dataset. 
+Specifically, we will use the file “gimms3g_ndvi_1982-2012.nc4”. Download the data here https://daac.ornl.gov/daacdata/global_vegetation/GIMMS3g_NDVI_Trends/data/gimms3g_ndvi_1982-2012.nc4 before beginning the tutorial.
 
 ## Prerequisites
 
