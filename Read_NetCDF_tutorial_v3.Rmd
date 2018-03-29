@@ -28,8 +28,10 @@ library(ggplot2) # package for plotting
 Use nc_open to read the data into a data structure I called nc_data. Print the metadata about this file to a text file.
 
 ```{r in_data}
+# open the file
 nc_data <- nc_open('gimms3g_ndvi_1982-2012.nc4')
-# Save the print(nc) dump to a text file
+
+# save the print(nc) dump to a text file
 {
     sink('gimms3g_ndvi_1982-2012_metadata.txt')
  print(nc_data)
@@ -47,6 +49,7 @@ There are 10 global attributes which provide metadata information about the file
 We need to capture these data in the lat, lon, and time dimensions. The following code reads the latitudes, longitudes, and time of each NDVI observation and saves them in memory.
 
 ```{r dimensions}
+# get the lat, lon, and time coordinates
 lon <- ncvar_get(nc_data, "lon")
 lat <- ncvar_get(nc_data, "lat", verbose = F)
 t <- ncvar_get(nc_data, "time")
@@ -57,13 +60,14 @@ Read in the data from the NDVI variable and verify the dimensions of the array. 
 
 ```{r read_NDVI}
 ndvi.array <- ncvar_get(nc_data, "NDVI") # store the data in a 3-dimensional array
-dim(ndvi.array) 
+
+dim(ndvi.array) # print the dimensions to the screen
 ```
 Other pertinent information about the NDVI variable: 
 Lets's see what fill value was used for missing data.
 ```{r fillVal}
-fillvalue <- ncatt_get(nc_data, "NDVI", "_FillValue")
-fillvalue
+fillvalue <- ncatt_get(nc_data, "NDVI", "_FillValue") # get the fill value
+fillvalue # print to screen
 ```
 The fill value is -9999.
 
@@ -83,14 +87,15 @@ Let's get one year of the NDVI data and plot it.
 
 Time is the third dimension of the "ndvi.array". The first time slice represents the growing season of 1982.
 ```{r one_year}
-ndvi.slice <- ndvi.array[, , 1] 
+ndvi.slice <- ndvi.array[, , 1] # get the first time slice
 ```
 Just to make sure everything is working correctly, we can take a look at the dimensions of this time slice. The dimensions should be 4320 longitudes by 840 latitudes.
 ```{r check_dim}
-dim(ndvi.slice)
+dim(ndvi.slice) # print dimensions to screen 
 ```
 Ok, everything checks out, so we can go ahead and save this data in a raster. Note that we provide the coordinate reference system "CRS" in the standard well-known text format. For this data set, it is the common WGS84 system.
 ```{r rasterize}
+# save this time slice as a raster
 r <- raster(t(ndvi.slice), xmn=min(lon), xmx=max(lon), ymn=min(lat), ymx=max(lat), crs=CRS("+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs+ towgs84=0,0,0"))
 ```
 We will need to transpose and flip to orient the data correctly. The best way to figure this out is through trial and error, but remember that most netCDF files record spatial data from the bottom left corner. 
@@ -134,7 +139,9 @@ toolik_series <- extract(r_brick, SpatialPoints(cbind(toolik_lon,toolik_lat)), m
 
 This timeseries is in a simple vector indexed only by the raster layer ID, so let's put it in an easier-to-use dataframe form and then plot the timeseries.
 ```{r plot_Toolik}
-toolik_df <- data.frame(year= seq(from=1982, to=2012, by=1), NDVI=t(toolik_series))
+toolik_df <- data.frame(year= seq(from=1982, to=2012, by=1), NDVI=t(toolik_series)) # save as a dataframe
+
+# plot and save
 ggplot(data=toolik_df, aes(x=year, y=NDVI, group=1)) +
   geom_line() + # make this a line plot
   ggtitle("Growing season NDVI at Toolik Lake Station") +     # Set title
@@ -143,18 +150,19 @@ ggsave('GIMMS3g_Toolik.png')
 ```
 ![Growing season NDVI at Toolik Lake Station](GIMMS3g_Toolik.png)
 
-Wow! The Toolik Lake site really is getting greener. 
+Wow! The Toolik Lake site really is getting greener over time. 
 
 ## Difference in NDVI between two time periods
 The authors of this dataset identified long-term trends in NDVI over the 31 year period from 1982 to 2012. Their paper in Global Change Biology found some interesting patterns:
 
+You can check out the paper here:
 Guay, K. C., Beck, P. S. A., Berner, L. T., Goetz, S. J., Baccini, A. and Buermann, W. (2014), Vegetation productivity patterns at high northern latitudes: a multi-sensor satellite data assessment. Glob Change Biol, 20: 3147-3158. https://doi.org/10.1111/gcb.12647
 
 Let's look at the difference in NDVI between 1982 and 2012.
 
 The 'ndvi.slice' array has the data from 1982. Let's get the data from 2012, the 31st time slice.
 ```{r 2012_data}
-ndvi.slice.2012 <- ndvi.array[, , 31] 
+ndvi.slice.2012 <- ndvi.array[, , 31] # get the 31st time slice
 ```
 Now take the difference between them.
 ```{r difference}
