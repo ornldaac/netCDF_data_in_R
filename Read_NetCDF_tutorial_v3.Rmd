@@ -2,7 +2,7 @@
 
 In this tutorial we will open some geospatial data that is stored in a netCDF file. We will select the variable and time range of interest, and export the data to a GeoTIFF so that we can continue the analysis in R or other geospatial software.
 
-## An example NetCDF dataset
+## 1. Open and read an example NetCDF dataset
 First, we need some data to play with. As an example, we will use some data on trends in vegetation greenness in the Arctic created by Guay et al. 
 
 The data citation is:
@@ -119,7 +119,7 @@ writeRaster(r, "GIMMS3g_1982.tif", "GTiff", overwrite=TRUE)
 ```
 
 
-## Extract data at a study site
+## 2. Extract data at a study site
 Maybe you want to get a timeseries of NDVI at a study location, such as the Toolik Lake Field Station in Alaska (Latitude: 68.6275, Longitude: -149.5975).
 
 First, we will need to convert the entire 3d array of data to a raster brick. **Note, this step may take several minutes.**
@@ -152,7 +152,8 @@ ggsave('GIMMS3g_Toolik.png')
 
 Wow! The Toolik Lake site really is getting greener over time. 
 
-## Difference in NDVI between two time periods
+
+## 3. Difference in NDVI between two time periods
 The authors of this dataset identified long-term trends in NDVI over the 31 year period from 1982 to 2012. Their paper in Global Change Biology found some interesting patterns:
 
 You can check out the paper here:
