@@ -1,6 +1,5 @@
 # How to open and work with NetCDF data in R
 
-*Author: Alison Boyer*  
 *Date: March 26, 2018*  
 *Contact for ORNL DAAC: uso@daac.ornl.gov*  
 
