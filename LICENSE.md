@@ -2,7 +2,7 @@ Copyright , UT-Battelle, LLC
 
 All rights reserved
 
-# How to open and work with NetCDF data in R
+# How to Open and Work with NetCDF Data in R
 
 ## OPEN SOURCE LICENSE
 
@@ -13,7 +13,6 @@ Subject to the conditions of this License, UT-Battelle, LLC (the “Licensor”)
 2. Neither the names of Licensor, the Department of Energy, or their employees may be used to endorse or promote products derived from this Software without their specific prior written permission.
 
 3. If the Software is protected by a proprietary trademark owned by Licensor or the Department of Energy, then derivative works of the Software may not be distributed using the trademark without the prior written approval of the trademark owner.
-
 
 ---
 
