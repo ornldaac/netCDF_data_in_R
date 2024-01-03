@@ -54,12 +54,9 @@ This dataset provides normalized difference vegetation index (NDVI) data for the
 
 The dataset is available from the ORNL DAAC. An active Earthdata login is needed for download. For new users, an Earthdata account is available from free by completing the registration at https://urs.earthdata.nasa.gov.
 
-Use this link to download the file if needed: 
+If needed, download the data file at [https://daac.ornl.gov/daacdata/global_vegetation/GIMMS3g_NDVI_Trends/data/gimms3g_ndvi_1982-2012.nc4](https://daac.ornl.gov/daacdata/global_vegetation/GIMMS3g_NDVI_Trends/data/gimms3g_ndvi_1982-2012.nc4).
 
-[https://daac.ornl.gov/daacdata/global_vegetation/GIMMS3g_NDVI_Trends/data/gimms3g_ndvi_1982-2012.nc4](https://daac.ornl.gov/daacdata/global_vegetation/GIMMS3g_NDVI_Trends/data/gimms3g_ndvi_1982-2012.nc4)
-
-Be sure to save this *.nc4 file to the current working directory.  
-
+Be sure to save the netCDF file (which uses the file extension *.nc4) to your working directory.  
 
 # Read the NetCDF File Contents
 
