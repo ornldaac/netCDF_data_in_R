@@ -1,7 +1,7 @@
 ---
 title: "How to Open and Work with NetCDF Data in R"
 author: "ORNL DAAC https://daac.ornl.gov"
-date: "December 5, 2023"
+date: "January 2, 2024"
 output:
   pdf_document:
     toc: yes
