@@ -7,7 +7,7 @@
 ### *Keywords: R, netCDF*  
 
 ***
-**UPDATE:** The entire repo was updated 2022-01-24. This will likely be the last update to the tutorial, as the rgdal package will retire in 2023, and the code would require an extensive rewrite.
+**UPDATE:** The repo was updated on 2024-01-02. The R code was rewritten to remove dependencies on the *rgdal* and *raster* packages.  The code now uses functions of the *terra* package for raster data.
 
 # 1. Overview
 
@@ -44,9 +44,8 @@ Participants should have a basic understanding of R.
 
 # 5. Credits
 
-* [R](https://www.r-project.org/) - 4.1.0 (2021-05-18) -- "Camp Pontanezen"  
+* [R](https://www.r-project.org/) - 4.3.2 (2023-10-31) -- "Eye Holes"  
 * [RStudio](https://www.rstudio.com/products/rstudio/) - IDE and notebook construction  
 * [ggplot2](https://CRAN.R-project.org/package=ggplot2) - plot figures  
 * [ncdf4](https://CRAN.R-project.org/package=ncdf4) - netcdf manipulation  
-* [raster package](https://CRAN.R-project.org/package=raster) - geospatial data manipulations  
-* [rgdal package](https://cran.r-project.org/package=rgdal) - bindings for geospatial data manipulations  
+* [terra package](https://CRAN.R-project.org/package=terra) - geospatial data manipulations 
