@@ -213,7 +213,7 @@ The dimensions should be 4,320 longitudes values by 840 latitudes values. Everyt
 
 # Rasterize and Plot
 
-It may be necessary to rearrange the data array. For example, the rows vary by longitude and columns by latitude. In order to display the data correctly on a map, the data need to be transposed so the values are arranged by latitude (rows) by longitude (columns).
+It may be necessary to rearrange the data array. For example, the rows vary by longitude and columns by latitude. In order to display the data correctly on a map, the data need to be transposed so the values are arranged by latitude (rows) and longitude (columns).
 
 
 ```r
@@ -318,7 +318,7 @@ The authors of this dataset identified long-term trends in NDVI over the 31 year
 
 Let's look at the difference in NDVI between 1982 and 2012.
 
-The *ndvi.slice.1982* array has the data from 1982. Let's get the data from 2012, the 31st time slice and call save it to *ndvi.slice.2012*.
+The *ndvi.slice.1982* array has the data from 1982. Let's get the data from 2012, the 31st time slice, and save it to *ndvi.slice.2012*.
 
 
 ```r
