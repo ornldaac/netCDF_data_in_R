@@ -46,6 +46,6 @@ Participants should have a basic understanding of R.
 
 * [R](https://www.r-project.org/) - 4.3.2 (2023-10-31) -- "Eye Holes"  
 * [RStudio](https://www.rstudio.com/products/rstudio/) - IDE and notebook construction  
-* [ggplot2](https://CRAN.R-project.org/package=ggplot2) - plot figures  
-* [ncdf4](https://CRAN.R-project.org/package=ncdf4) - netcdf manipulation  
-* [terra package](https://CRAN.R-project.org/package=terra) - geospatial data manipulations 
+* [ggplot2](https://CRAN.R-project.org/package=ggplot2) - plot figures (R package)
+* [ncdf4](https://CRAN.R-project.org/package=ncdf4) - netcdf manipulation (R package)  
+* [terra](https://CRAN.R-project.org/package=terra) - geospatial data manipulations (R package)
