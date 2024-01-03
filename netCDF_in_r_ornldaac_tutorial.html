@@ -547,7 +547,7 @@ values. Everything checks out, so we can save the data as a raster.</p>
 <p>It may be necessary to rearrange the data array. For example, the
 rows vary by longitude and columns by latitude. In order to display the
 data correctly on a map, the data need to be transposed so the values
-are arranged by latitude (rows) by longitude (columns).</p>
+are arranged by latitude (rows) and longitude (columns).</p>
 <pre class="r"><code>r.tmp &lt;- t(ndvi.slice.1982) # transpose to lat (rows), lon (cols)
 # r.tmp is a temporary object to hold the transposed array</code></pre>
 <p>Now, create a SpatialRaster object using the terra package. Note that
@@ -646,7 +646,7 @@ Biology 20:3147-3158. <a href="https://doi.org/10.1111/gcb.12647">https://doi.or
 </blockquote>
 <p>Let’s look at the difference in NDVI between 1982 and 2012.</p>
 <p>The <em>ndvi.slice.1982</em> array has the data from 1982. Let’s get
-the data from 2012, the 31st time slice and call save it to
+the data from 2012, the 31st time slice, and save it to
 <em>ndvi.slice.2012</em>.</p>
 <pre class="r"><code>ndvi.slice.2012 &lt;- ndvi.array[, , 31]
 dim(ndvi.slice.2012) # display dimensions (lon, lat)</code></pre>
