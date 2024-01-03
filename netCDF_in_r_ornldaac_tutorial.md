@@ -1,7 +1,7 @@
 ---
 title: "How to Open and Work with NetCDF Data in R"
 author: "ORNL DAAC https://daac.ornl.gov"
-date: "December 5, 2023"
+date: "January 2, 2024"
 output:
   html_document:
     keep_md: yes
@@ -24,26 +24,26 @@ editor_options:
 
 <!------------- LOAD THIS FILE INTO RSTUDIO ----------------------->
 
-This tutorial illustrates how to read spatial data (raster) from netCDF file and import into R for plotting and analysis.  The R code is uses the 'ncdf4' package for reading netCDF files, 'terra' package for creating spatial raster objects, and 'ggplot2' for drawing line graphs.
+This tutorial illustrates how to read spatial data (i.e., a raster) from a netCDF file and import it into R for plotting and analysis.
 
 # Install and Load Packages
 
-In addition to the built-in functionality of R, we will use four packages throughout this exercise. Packages are a collection of documentation, functions, and other items that someone has created and compiled for others to use in R. Install the packages, as well as their dependencies, using the function `install.packages()`.
+In addition to the built-in functionality of R, we will use three packages throughout this exercise: the **ncdf4** package for reading netCDF files, the **terra** package for creating spatial raster objects, and the **ggplot2** package for drawing line graphs. Packages are a collection of documentation, functions, and other items that someone has created and compiled for others to use in R. Install the packages, as well as their dependencies, using the function `install.packages()`.
 
 
 ```r
-install.packages("ggplot2", dependencies = TRUE) 
-install.packages("ncdf4", dependencies = TRUE) 
-install.packages("terra", dependencies = TRUE) 
+install.packages("ggplot2", dependencies = TRUE)
+install.packages("ncdf4", dependencies = TRUE)
+install.packages("terra", dependencies = TRUE)
 ```
 
 Reading data stored in netCDF files is quite straightforward in R, provided that you load the appropriate packages. After installing the packages, their libraries need to be loaded to use the functions.
 
 
 ```r
-library(ggplot2) 
-library(ncdf4) 
-library(terra) 
+library(ggplot2)
+library(ncdf4)
+library(terra)
 ```
 
 For package details try `help()` (e.g., `help("ncdf4")`), and to view the necessary arguments of a function try `args()` (e.g., `args(nc_open)`).
@@ -56,12 +56,9 @@ This dataset provides normalized difference vegetation index (NDVI) data for the
 
 The dataset is available from the ORNL DAAC. An active Earthdata login is needed for download. For new users, an Earthdata account is available from free by completing the registration at https://urs.earthdata.nasa.gov.
 
-Use this link to download the file if needed: 
+If needed, download the data file at [https://daac.ornl.gov/daacdata/global_vegetation/GIMMS3g_NDVI_Trends/data/gimms3g_ndvi_1982-2012.nc4](https://daac.ornl.gov/daacdata/global_vegetation/GIMMS3g_NDVI_Trends/data/gimms3g_ndvi_1982-2012.nc4).
 
-[https://daac.ornl.gov/daacdata/global_vegetation/GIMMS3g_NDVI_Trends/data/gimms3g_ndvi_1982-2012.nc4](https://daac.ornl.gov/daacdata/global_vegetation/GIMMS3g_NDVI_Trends/data/gimms3g_ndvi_1982-2012.nc4)
-
-Be sure to save this *.nc4 file to the current working directory.  
-
+Be sure to save the netCDF file (which uses the file extension *.nc4) to your working directory.  
 
 # Read the NetCDF File Contents
 
@@ -116,18 +113,18 @@ File gimms3g_ndvi_1982-2012.nc4 (NC_FORMAT_NETCDF4_CLASSIC):
 ##
 ```
 
-From this output we see that there are two variables: "time_bnds", which contains the start and end date of each observation, and "NDVI", which is the variable of interest. "NDVI" has three dimensions written as [lon,lat,time].
+From this output, we see that there are two variables: "time_bnds", which contains the start and end date of each observation, and "NDVI", which is the variable of interest. "NDVI" has three dimensions written as [lon,lat,time].
 
 There are a total of four dimensions in the file: "lat", "lon", "time", and "nv". The latter is used to record the beginning and end of the time range. In our case, we can ignore "nv" and focus on the three dimensions that are used to organize the NDVI data. There are also 10 global attributes which provide metadata information about the file.
 
-We need to capture the values associated with these dimensions.  The following code reads the latitudes, longitudes, and times of each NDVI observation, saves them to memory, and prints the length of these vectors.
+We need to capture the values associated with these dimensions. The following code reads the latitudes, longitudes, and times of each NDVI observation, saves them to memory, and prints the length of these vectors.
 
 
 ```r
-lon <- ncvar_get(nc_data, "lon", verbose = FALSE)   # read lon variable
-lat <- ncvar_get(nc_data, "lat", verbose = FALSE)   # read lat variable
-t <- ncvar_get(nc_data, "time", verbose = FALSE)   # read t (time) variable
-print( c(length(lon), length(lat), length(t)) )    # show vector lengths
+lon <- ncvar_get(nc_data, "lon", verbose = FALSE) # read lon variable
+lat <- ncvar_get(nc_data, "lat", verbose = FALSE) # read lat variable
+t <- ncvar_get(nc_data, "time", verbose = FALSE) # read t (time) variable
+print(c(length(lon), length(lat), length(t))) # show vector lengths
 ```
 
 ```
@@ -138,7 +135,7 @@ Look at a few of the longtitude and latitude values to ensure they make sense.
 
 
 ```r
-head(lon)  # print the first few entries in the longitude vector
+head(lon) # print the first few entries in the longitude vector
 ```
 
 ```
@@ -146,7 +143,7 @@ head(lon)  # print the first few entries in the longitude vector
 ```
 
 ```r
-head(lat)  # and the longitude vector
+head(lat) # and the longitude vector
 ```
 
 ```
@@ -157,15 +154,15 @@ Next, read in the data from the variable "NDVI" and verify the dimensions of the
 
 
 ```r
-ndvi.array <- ncvar_get(nc_data, "NDVI")  # store the data in a 3-dimensional array
-dim(ndvi.array)  # print the dimensions to the screen
+ndvi.array <- ncvar_get(nc_data, "NDVI") # store the data in a 3-dimensional array
+dim(ndvi.array) # print the dimensions to the screen
 ```
 
 ```
 ## [1] 4320  840   31
 ```
 
-By comparing these dimensions to the *lon*, *lat*, and *t* vector lengths, we see that there are 4320 longitude, 840 latitude, and 31 time values in the NDVI array.
+By comparing these dimensions to the *lon*, *lat*, and *t* vector lengths, we see that there are 4,320 longitude, 840 latitude, and 31 time values in the NDVI array.
 
 Another pertinent piece of information about the "NDVI" variable is the value used to designate missing data. This code obtains the "_FillValue" attribute from the NDVI variable, the value which indicates missing data.
 
@@ -179,13 +176,13 @@ print(fillvalue$value)
 ## [1] -9999
 ```
 
-The fill value is -9999.
+The fill value (aka, the no data value) is -9999.
 
-We can close the netCDF file now that the data have been read into an R object. 
+We can close the netCDF file now that the data have been read into an R object.
 
 
 ```r
-nc_close(nc_data) 
+nc_close(nc_data)
 ```
 
 # Working with the Data
@@ -201,7 +198,7 @@ ndvi.array[ndvi.array == fillvalue$value] <- NA
 
 Let's get one year of the NDVI data and plot it.
 
-Time is the third dimension of the *ndvi.array*. The first time slice represents the growing season of 1982. Just to make sure everything is working correctly, we can take a look at the dimensions of this time slice.
+Time is the third dimension of *ndvi.array*. The first time slice represents the growing season of 1982. Just to make sure everything is working correctly, we can take a look at the dimensions of this time slice.
 
 
 ```r
@@ -212,43 +209,44 @@ dim(ndvi.slice.1982)
 ```
 ## [1] 4320  840
 ```
-The dimensions should be 4320 longitudes by 840 latitudes. Everything checks out, so we can save the data as a raster. 
+The dimensions should be 4,320 longitudes values by 840 latitudes values. Everything checks out, so we can save the data as a raster.
 
 # Rasterize and Plot
 
-It may be necessary to rearrange the data array. For example, the rows vary by longitude and columns by latitude.  In order to display the data correctly on a map, the data need to be transposed so the values are arranged by latitude (rows) by longitude (columns).  
+It may be necessary to rearrange the data array. For example, the rows vary by longitude and columns by latitude. In order to display the data correctly on a map, the data need to be transposed so the values are arranged by latitude (rows) by longitude (columns).
 
 
 ```r
-r.tmp <- t(ndvi.slice.1982)	              # transpose to lat (rows), lon (cols)
-      # r.tmp is a temporary object to hold the transposed array
+r.tmp <- t(ndvi.slice.1982) # transpose to lat (rows), lon (cols)
+# r.tmp is a temporary object to hold the transposed array
 ```
 
-Now, create a SpatialRaster object using the terra package. Note that the W,E,S,N geographic boundaries are specified in the 'extent' portion of the `rast()` function. In addition, the coordinate reference system (CRS) is specified in proj4 format. This dataset uses the common "WGS 84" system (EPSG:4326) for geographic coordinates.
+Now, create a SpatialRaster object using the terra package. Note that the W,E,S,N geographic boundaries are specified in the "extent" portion of the `rast()` function. In addition, the coordinate reference system (CRS) is specified in proj4 format. This dataset uses the common "WGS 84" system (EPSG:4326) for geographic coordinates.
 
 
 ```r
-r <- rast(r.tmp, extent=ext( min(lon), max(lon), min(lat), max(lat) ),
-            crs = "+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs +towgs84=0,0,0")
-rm(r.tmp)       # a bit of clean up
+r <- rast(r.tmp,
+  extent = ext(min(lon), max(lon), min(lat), max(lat)),
+  crs = "+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs +towgs84=0,0,0"
+)
+rm(r.tmp) # a bit of clean up
 ```
 
-Finally, we can plot the raster to take a look at NDVI for 1982. 
+Finally, we can plot the raster to take a look at NDVI for 1982.
 
 Most netCDF files record spatial data beginning at the **bottom** left corner, but R stores and plots the data from the **upper** left corner. Therefore, the data must be flipped on the vertical axis to correctly orient it for R.
 
 
 ```r
-r <- flip(r, direction = "vertical")	         # flip on vertical axis
-plot(r, xlab="Longitude", ylab="Latitude")     # verify correct orientation
+r <- flip(r, direction = "vertical") # flip on vertical axis
+plot(r, xlab = "Longitude", ylab = "Latitude") # verify correct orientation
 ```
 
 ![](netCDF_in_r_ornldaac_tutorial_files/figure-html/raster_flip-1.png)<!-- -->
 
 Remember that these data are cut-off below 20 degrees North latitude.
 
-For these netCDF data, we needed to transpose and flip the raster to orient the data correctly in R. The best way to figure this out is through trial and error. First plot the spatial raster to check orientation, then transpose and flip as needed. 
-
+For these netCDF data, we needed to transpose and flip the raster to orient the data correctly in R. The best way to figure this out is through trial and error. First plot the spatial raster to check orientation, then transpose and flip as needed.
 
 # Save as a GeoTIFF File
 
@@ -256,7 +254,7 @@ Save the raster as a GeoTIFF file for use by other GIS software.
 
 
 ```r
-writeRaster(r, filename="GIMMS3g_1982.tif", filetype="GTiff", overwrite = TRUE)
+writeRaster(r, filename = "GIMMS3g_1982.tif", filetype = "GTiff", overwrite = TRUE)
 ```
 
 # Extract Data at a Study Site
@@ -267,12 +265,11 @@ First, convert the entire 3D array of data to a multilayer SpatialRaster object.
 
 
 ```r
-ndvi.x <- aperm(ndvi.array, c(2,1,3))		# transpose the 3D array
-y <- dim(ndvi.x)[1]                     # y = number of rows (latitude)
-ndvi.f <- ndvi.x[(y:1),,]	              # flip by row index (reversed)
-r_br <- rast(ndvi.f, extent=ext(min(lon),max(lon),min(lat),max(lat)),
-            crs = "+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs+ towgs84=0,0,0")
-rm(y, ndvi.x, ndvi.f)                      # clean up
+ndvi.x <- aperm(ndvi.array, c(2, 1, 3)) # transpose the 3D array
+y <- dim(ndvi.x)[1] # y = number of rows (latitude)
+ndvi.f <- ndvi.x[(y:1), , ] # flip by row index (reversed)
+r_br <- rast(ndvi.f, extent = ext(min(lon), max(lon), min(lat), max(lat)), crs = "+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs+ towgs84=0,0,0")
+rm(y, ndvi.x, ndvi.f) # clean up
 ```
 
 Extract a timeseries of data at the Toolik Lake study location from the raster brick using the `extract()` function. This function reads the NDVI values for each of the 31 timesteps at the location designated by the lon, lat coordinates. The next four lines create a SpatialVector point object "toolik_pt" with the Toolik coordinates that is passed to `extract()` in the fifth line.
@@ -281,11 +278,11 @@ Extract a timeseries of data at the Toolik Lake study location from the raster b
 ```r
 toolik_lon <- -149.5975
 toolik_lat <- 68.6275
-toolik_xy <- matrix( c(toolik_lon, toolik_lat), nrow=1 )		    # 1-row matrix
-toolik_pt <- vect(toolik_xy, crs="+proj=longlat +datum=WGS84") 	# SpatialVector point
-toolik_series <- extract(r_br, toolik_pt, ID=FALSE)
+toolik_xy <- matrix(c(toolik_lon, toolik_lat), nrow = 1) # 1-row matrix
+toolik_pt <- vect(toolik_xy, crs = "+proj=longlat +datum=WGS84") # SpatialVector point
+toolik_series <- extract(r_br, toolik_pt, ID = FALSE)
 colnames(toolik_series) <- 1982:2012
-print(format(toolik_series, digits=4))                           # 31 values
+print(format(toolik_series, digits = 4)) # 31 values
 ```
 
 ```
@@ -304,9 +301,9 @@ This timeseries is stored as a simple vector indexed only by the raster layer ID
 toolik_df <- data.frame(year = seq(from = 1982, to = 2012, by = 1), NDVI = t(toolik_series))
 
 ggplot(data = toolik_df, aes(x = year, y = NDVI, group = 1)) +
-  geom_line() +  # make this a line plot
-  ggtitle("Growing season NDVI at Toolik Lake Station") + 
-  theme_bw()  # use the black and white theme
+  geom_line() + # make this a line plot
+  ggtitle("Growing season NDVI at Toolik Lake Station") +
+  theme_bw() # use the black and white theme
 ```
 
 ![](netCDF_in_r_ornldaac_tutorial_files/figure-html/plot_Toolik-1.png)<!-- -->
@@ -326,7 +323,7 @@ The *ndvi.slice.1982* array has the data from 1982. Let's get the data from 2012
 
 ```r
 ndvi.slice.2012 <- ndvi.array[, , 31]
-dim(ndvi.slice.2012)  # display dimensions (lon, lat)
+dim(ndvi.slice.2012) # display dimensions (lon, lat)
 ```
 
 ```
@@ -343,12 +340,14 @@ ndvi.diff <- ndvi.slice.2012 - ndvi.slice.1982
 Convert to a SpatialRaster object and plot.
 
 ```r
-ndvi.diff <- t(ndvi.diff)                       # transpose rows & cols
-r_diff <- rast(ndvi.diff, extent=ext(min(lon),max(lon),min(lat),max(lat)),
-            crs = "+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs+ towgs84=0,0,0")
-r_diff <- flip(r_diff, direction = "vertical")  # flip vertically
+ndvi.diff <- t(ndvi.diff) # transpose rows & cols
+r_diff <- rast(ndvi.diff,
+  extent = ext(min(lon), max(lon), min(lat), max(lat)),
+  crs = "+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs+ towgs84=0,0,0"
+)
+r_diff <- flip(r_diff, direction = "vertical") # flip vertically
 
-plot(r_diff, main="NDVI: Difference between 1982 and 2012")
+plot(r_diff, main = "NDVI: Difference between 1982 and 2012")
 ```
 
 ![](netCDF_in_r_ornldaac_tutorial_files/figure-html/difference_raster-1.png)<!-- -->
