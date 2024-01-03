@@ -24,11 +24,11 @@ editor_options:
 
 <!------------- LOAD THIS FILE INTO RSTUDIO ----------------------->
 
-This tutorial illustrates how to read spatial data (raster) from netCDF file and import into R for plotting and analysis.  The R code is uses the 'ncdf4' package for reading netCDF files, 'terra' package for creating spatial raster objects, and 'ggplot2' for drawing line graphs.
+This tutorial illustrates how to read spatial data (i.e., a raster) from a netCDF file and import it into R for plotting and analysis.
 
 # Install and Load Packages
 
-In addition to the built-in functionality of R, we will use four packages throughout this exercise. Packages are a collection of documentation, functions, and other items that someone has created and compiled for others to use in R. Install the packages, as well as their dependencies, using the function `install.packages()`.
+In addition to the built-in functionality of R, we will use three packages throughout this exercise: the **ncdf4** package for reading netCDF files, the **terra** package for creating spatial raster objects, and the **ggplot2** package for drawing line graphs. Packages are a collection of documentation, functions, and other items that someone has created and compiled for others to use in R. Install the packages, as well as their dependencies, using the function `install.packages()`.
 
 ```{r eval=FALSE, warning=FALSE, message=FALSE, packages}
 install.packages("ggplot2", dependencies = TRUE) 
