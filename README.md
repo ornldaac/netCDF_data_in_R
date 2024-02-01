@@ -7,7 +7,7 @@
 ### *Keywords: R, netCDF*  
 
 ***
-**UPDATE:** The repo was updated on 2024-01-02. The R code was rewritten to remove dependencies on the *rgdal* and *raster* packages.  The code now uses functions of the *terra* package for raster data.
+**UPDATE:** The repo was updated on 2021-12-03 and again on 2024-01-02. The recent update includes a revision of the tutorial to replace deprecated packages (e.g., rgdal and raster).
 
 # 1. Overview
 
